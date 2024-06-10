@@ -1,9 +1,11 @@
-const cloudinary = require('cloudinary').v2;
+const cloudinary = require("cloudinary").v2;
+const dotenv = require("dotenv");
+dotenv.config();
 
 cloudinary.config({
-  cloud_name: "dws9abtgy",
-  api_key: "639665173412735",
-  api_secret: "-kNcA-C2cwzI9CIeKrW_7BOAXZk",
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 module.exports = cloudinary;
