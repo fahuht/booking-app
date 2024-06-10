@@ -1,0 +1,38 @@
+:root {
+    --yellow: #f5c32c;
+    --purple: #6d1192;
+    --black: #242d49;
+    --gray: rgba(36, 45, 73, 0.65);
+    --profileShadow: 0px 4px 17px 2px rgba(0, 0, 0, 0.25);
+    --hrColor: #cfcdcd;
+    --cardColor: rgba(255, 255, 255, 0.64);
+    --buttonBg: linear-gradient(98.63deg, #f7a0a5, #bd0a0a 100%);
+    --inputColor: rgba(40, 52, 62, 0.07);
+    --photo: #4cb256;
+    --video: #4a4eb7;
+    --location: #ef5757;
+    --schedule: #e1ae4a;
+  }
+  
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    background: var(--buttonBg);
+    transition: all 100ms ease-out;
+  }
+  
+  .button:hover {
+    cursor: pointer;
+    color: var(--location);
+    background: transparent;
+    border: 1px solid var(--location);
+  }
+  
+  .button:disabled {
+    background: silver;
+    pointer-events: none;
+  }

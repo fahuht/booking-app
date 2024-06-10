@@ -1,0 +1,43 @@
+.hero_content{
+    padding-top: 150px;
+    background: fixed;
+    color: #50505f;
+}
+.hero_button button{    
+    border: none;
+    outline: none;
+    padding: 7px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.footer_order_btn{
+    background: rgb(211, 69, 69);
+    color: #fff;
+    transition: 0.3s;
+}
+.footer_order_btn:hover{
+    background: #212245;
+}
+
+.all_food_btn{
+    background: transparent;
+    border: 1px solid rgb(211, 69, 69) !important;
+}
+.all_food_btn a{
+    color: rgb(211, 69, 69);
+    text-decoration: none;
+}
+
+.hero_service p{
+    color: #212245;
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+.shipping_icon i{
+    padding: 5px;
+    background: #df2020;
+    color: #fff;
+    border-radius: 50%;
+}

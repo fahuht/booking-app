@@ -1,0 +1,19 @@
+
+  .contact_img img{
+    height: 90%;
+  }
+.left{
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    top: 65%;
+}
+
+.left i{
+    color: rgb(253, 0, 0);
+}
+
+.left a{
+    text-decoration: none;
+}
