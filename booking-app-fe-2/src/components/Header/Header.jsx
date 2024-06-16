@@ -1,72 +1,72 @@
-import { React, useRef, useEffect } from 'react'
+import { React, useRef, useEffect } from "react";
 
-import logo from '../../assets/image/res-logo.png'
-import { Container } from 'reactstrap'
-import { NavLink, Link, useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import logo from "../../assets/image/res-logo.png";
+import { Container } from "reactstrap";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-import '../Header/Header.css'
-import { Button } from 'antd'
-import { logOut } from '../../action/AuthAction'
+import "../Header/Header.css";
+import { Button } from "antd";
+import { logOut } from "../../action/AuthAction";
 
 const Header = () => {
-  const menuRef = useRef(null)
-  const headerRef = useRef(null)
-  const user = useSelector((state) => state.authReducer.authData)
+  const menuRef = useRef(null);
+  const headerRef = useRef(null);
+  const user = useSelector((state) => state.authReducer.authData);
   const totalQuantity = useSelector(
-    (state) => state.cart && state.cart.totalQuantity,
-  )
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+    (state) => state.cart && state.cart.totalQuantity
+  );
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const nav_link = [
     {
-      path: '/trang-chu',
-      display: 'Trang chủ',
+      path: "/trang-chu",
+      display: "Trang chủ",
     },
     {
-      path: '/foods',
-      display: 'Sản phẩm',
+      path: "/foods",
+      display: "Sản phẩm",
     },
     {
-      path: '/gio-hang',
-      display: 'Giỏ hàng',
+      path: "/gio-hang",
+      display: "Giỏ hàng",
     },
     {
-      path: '/don-hang',
-      display: 'Đơn hàng',
+      path: "/don-hang",
+      display: "Đơn hàng",
     },
     {
-      path: '/lien-he',
-      display: 'Liên hệ',
+      path: "/lien-he",
+      display: "Liên hệ",
     },
-  ]
+  ];
 
   const nav_link_admin = [
     {
-      path: '/admin',
-      display: '',
+      path: "/admin",
+      display: "",
     },
-  ]
+  ];
 
-  const toggleMenu = () => menuRef.current.classList.toggle('menu-show')
+  const toggleMenu = () => menuRef.current.classList.toggle("menu-show");
 
   useEffect(() => {
-    window.addEventListener('scroll', () => {
+    window.addEventListener("scroll", () => {
       if (
         document.body.scrollTop > 80 ||
         document.documentElement.scrollTop > 80
       ) {
-        headerRef.current.classList.add('header_shrink')
+        headerRef.current.classList.add("header_shrink");
       } else {
-        headerRef.current.classList.remove('header_shrink')
+        headerRef.current.classList.remove("header_shrink");
       }
-    })
-  }, [])
+    });
+  }, []);
 
   const handleLogout = () => {
-    dispatch(logOut())
-  }
+    dispatch(logOut());
+  };
 
   return (
     <header className="header-header w-100" ref={headerRef}>
@@ -87,7 +87,7 @@ const Header = () => {
                       to={item.path}
                       key={index}
                       className={(navClass) =>
-                        navClass.isActive ? 'active_menu' : ''
+                        navClass.isActive ? "active_menu" : ""
                       }
                     >
                       {item.display}
@@ -99,7 +99,7 @@ const Header = () => {
                       to={item.path}
                       key={index}
                       className={(navClass) =>
-                        navClass.isActive ? 'active_menu' : ''
+                        navClass.isActive ? "active_menu" : ""
                       }
                     >
                       {item.display}
@@ -112,7 +112,9 @@ const Header = () => {
           <div className="header-right-icon d-flex align-items-center gap-4">
             {user ? (
               <div className="d-flex gap-4 align-items-center">
-                <strong>{user?.user?.firstname} {user?.user?.lastname}</strong>
+                <strong>
+                  {user?.user?.firstname} {user?.user?.lastname}
+                </strong>
                 <Button
                   className="addtoCart_btn"
                   onClick={() => handleLogout()}
@@ -123,7 +125,7 @@ const Header = () => {
             ) : (
               <Button
                 className="addtoCart_btn"
-                onClick={() => navigate('/dang-nhap')}
+                onClick={() => navigate("/dang-nhap")}
               >
                 Đăng nhập
               </Button>
@@ -132,7 +134,7 @@ const Header = () => {
         </div>
       </Container>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

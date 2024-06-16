@@ -174,7 +174,7 @@ const Home = () => {
                 <div
                   className="explore-menu-list-item "
                   onClick={() => {
-                    handleChangeCategory("TRA");
+                    handleChangeCategory("HiTea");
                     setCategory("Trà");
                   }}
                 >

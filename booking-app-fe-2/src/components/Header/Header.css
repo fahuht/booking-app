@@ -15,24 +15,24 @@
 .header-logo h5 {
   font-weight: 600;
   font-size: 1rem;
-  color: #212245;
+  color: #50505f;
   margin-top: -40px;
   margin-bottom: 0;
 }
 .header-menu a {
   font-weight: 600;
   font-size: 1rem;
-  color: #212245;
+  color: #50505f;
   transition: 0.3s;
   text-decoration: none;
 }
 
 .header-menu a:hover{
-    color: #dd2f2f;
+    color: tomato;
 }
 
 .active_menu{
-    color: #dd2f2f !important;
+    color: tomato !important;
 }
 
 .header-cart-icon i, .header-user-icon i, .header-mobile-menu i{
@@ -49,7 +49,7 @@
   position: absolute;
   top: 30px;
   right: -10px;
-  background: #df2020;
+  background: tomato;
   color: #fff;
   width: 15px;
   height: 15px;

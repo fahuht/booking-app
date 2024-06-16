@@ -12,7 +12,17 @@
 .cartpage_delete_btn i {
     cursor: pointer;
 }
+.cartpage_btn button{
+    border: none;
+    color: white;
+    background-color: tomato;
+    width: max(15vw, 200px);
+    padding: 12px 0px;
+    border-radius: 4px;
+    cursor: pointer;
+   
 
+}
 .cartpage_btn a{
     text-decoration: none;
     color: #fff;
@@ -22,7 +32,8 @@
 }
   
 .cartpage_subtotal {
-    color: #df2020;
+    color: tomato;
     font-size: 1.5rem;
+    font-weight: 600;
 }
   

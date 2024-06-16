@@ -1,53 +1,67 @@
-.product_item{
-    border: 1px solid #fde4e4;
-    text-align: center;
-    padding: 30px;
-    cursor: pointer;
-}
-.product_image{
-    display: flex;
-    justify-content: center;
-    width: 100% !important;
-    align-items: center;
-    margin-bottom: 20px;
+
+.food-item{
+    width: 100%;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px #00000015;
     transition: 0.3s;
-    width: 160px;
-    height: 160px;
+    animation: fadeIn 1s ;
 }
+.food-item-image{
+    width: 100%;
+    border-radius: 15px 15px 0px 0px;
+}
+.food-item-info{
+    padding: 20px;
 
-.product_image > img {
-    object-fit: cover;
-    width: 100% !important;
-    height: 100% !important;
 }
+.food-item-name-rating{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.food-item-name-rating p{
+    font-size: 20px;
+    font-weight: 500;
+}
+.food-item-name-rating image{
+    width: 70px;
+}
+.food-item-desc{
+    color: #676767;
+    font-size: 12px;
 
-.product_image:hover{
-    transform: scale(1.1);
 }
-
-.product__content h5 a{
-    color: #212245;
-    font-size: 1rem;
+.food-item-price{
+    color: tomato;
+    font-size: 22px;
+    font-weight: 500;
+    margin: 10px 0px;
 }
-.product__content a{
-   text-decoration: none;
+.food-item-img-container{
+    position: relative;
 }
-.product__content h5{
-    margin-bottom: 30px;
+.food-item-img-container .add{
+    width: 35px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    cursor: pointer;
+    border-radius: 50%;
 }
-
-.product__price{
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: #f40e06  ;
+.food-item-counter{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    border-radius: 50px;
+    background-color: white;
 }
-
-.addtoCart_btn{
-    border: none;
-    padding: 7px 25px;
-    background: #f40e06;
-    color:#fff;
-    border-radius: 5px;
-    font-size: 0.7rem;
+.food-item-counter img{
+    width: 30px;
 }
 

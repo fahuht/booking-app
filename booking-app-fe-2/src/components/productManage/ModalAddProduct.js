@@ -1,62 +1,62 @@
-import React, { useState } from 'react'
-import { Modal, Input, Select } from 'antd'
-import { useDispatch, useSelector } from 'react-redux'
-import { createProduct } from '../../action/ProductAction'
-import { Option } from 'antd/es/mentions'
+import React, { useState } from "react";
+import { Modal, Input, Select } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { createProduct } from "../../action/ProductAction";
+import { Option } from "antd/es/mentions";
 
 const ModalAddProduct = (props) => {
-  const { isOpenModal, setIsOpenModal } = props
-  const dispatch = useDispatch()
-  const loading = useSelector((state) => state.productReducer.loading)
+  const { isOpenModal, setIsOpenModal } = props;
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.productReducer.loading);
   const listCategory = useSelector(
-    (state) => state.categoryReducer.listCategory,
-  )
+    (state) => state.categoryReducer.listCategory
+  );
 
   const [dataRequest, setDataRquest] = useState({
-    title: '',
+    title: "",
     image: null,
-    description: '',
+    description: "",
     priceBySize: {
       sizeS: 0,
       sizeM: 0,
       sizeL: 0,
     },
     stock: 0,
-    category: 'food',
-  })
+    category: "food",
+  });
 
   const handleCancel = () => {
-    setIsOpenModal(false)
-  }
+    setIsOpenModal(false);
+  };
 
   // hàm bắt giá trị khi chọn ảnh
   const handleUploadImg = (e) => {
-    const reader = new FileReader()
-    reader.readAsDataURL(e.target.files[0])
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
     reader.onloadend = () => {
-      setDataRquest({ ...dataRequest, image: reader.result })
-    }
-  }
+      setDataRquest({ ...dataRequest, image: reader.result });
+    };
+  };
 
   // hàm bắt giá trị khi chọn select
   const handleChangeSelect = (option) => {
-    console.log(option)
+    console.log(option);
     const newDataRequest = {
       ...dataRequest,
       category: option.value,
       categoryName: option.label,
-    }
-    setDataRquest(newDataRequest)
-  }
+    };
+    setDataRquest(newDataRequest);
+  };
 
   // hàm bắt giá trị khi nhập input text
   const handleChange = (e) => {
     const newDataRequest = {
       ...dataRequest,
       [e.target.name]: e.target.value,
-    }
-    setDataRquest(newDataRequest)
-  }
+    };
+    setDataRquest(newDataRequest);
+  };
 
   const handleChangePrice = (e) => {
     const newDataRequest = {
@@ -65,14 +65,14 @@ const ModalAddProduct = (props) => {
         ...dataRequest.priceBySize,
         [e.target.name]: Number(e.target.value),
       },
-    }
-    setDataRquest(newDataRequest)
-  }
+    };
+    setDataRquest(newDataRequest);
+  };
 
   // hàm call api tạo sản phẩm
   const handleCreateProduct = () => {
-    dispatch(createProduct(dataRequest))
-  }
+    dispatch(createProduct(dataRequest));
+  };
 
   return (
     <Modal
@@ -141,7 +141,7 @@ const ModalAddProduct = (props) => {
         </Select>
       </div>
     </Modal>
-  )
-}
+  );
+};
 
-export default ModalAddProduct
+export default ModalAddProduct;
