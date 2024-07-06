@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearStateProduct, getProduct } from "../action/ProductAction.js";
 import Loading from "../components/Loading/Loading.js";
 import { notification } from "antd";
+import { getCategory } from "../action/CategoryAction.js";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,11 @@ const Home = () => {
   const { loading, isAddToCartSuccess } = useSelector(
     (state) => state.productReducer
   );
+  const listCategory = useSelector(
+    (state) => state.categoryReducer.listCategory
+  );
+
+  console.log("listCategory", listCategory);
 
   const [api, contextHolder] = notification.useNotification();
   const openNotificationWithIcon = (type) => {
@@ -68,6 +74,7 @@ const Home = () => {
         ...dataRequest,
       })
     );
+    dispatch(getCategory({}));
   }, []);
 
   const handleChangeCategory = (type) => {
@@ -145,19 +152,26 @@ const Home = () => {
 
             <div className="explore-menu" id="explore-menu">
               <div className="explore-menu-list">
-                {/* <button
-                  className={`all_food_btnn ${
-                    category === "Tất cả" ? "food_btn_active" : ""
-                  }`}
-                  onClick={() => {
-                    handleChangeCategory("");
-                    setCategory("Tất cả");
-                  }}
-                >
-                  Tất cả
-                </button> */}
+                {listCategory?.data?.map((itemCategory) => {
+                  return (
+                    <div
+                      className="explore-menu-list-item "
+                      onClick={() => {
+                        handleChangeCategory(itemCategory.code);
+                        setCategory(itemCategory.name);
+                      }}
+                    >
+                      <img
+                        className={category === itemCategory.name ? "active" : ""}
+                        src={itemCategory?.image?.url || menu_1}
+                        alt=""
+                      />
+                      <p>{itemCategory.name || "-"}</p>
+                    </div>
+                  );
+                })}
 
-                <div
+                {/* <div
                   className="explore-menu-list-item "
                   onClick={() => {
                     handleChangeCategory("DO_AN");
@@ -226,7 +240,7 @@ const Home = () => {
                     alt=""
                   />
                   <p>Đồ ăn</p>
-                </div>
+                </div> */}
                 <hr />
               </div>
             </div>
