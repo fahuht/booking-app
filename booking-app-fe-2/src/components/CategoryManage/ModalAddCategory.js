@@ -31,6 +31,14 @@ const ModalAddCategory = (props) => {
     dispatch(createCategory(dataRequest))
   }
 
+  const handleUploadImg = (e) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onloadend = () => {
+      setDataRquest({ ...dataRequest, image: reader.result });
+    };
+  };
+
   return (
     <Modal
       open={isOpenModal}
@@ -53,6 +61,7 @@ const ModalAddCategory = (props) => {
           type="text"
           onChange={(e) => handleChange(e)}
         />
+        <Input type="file" onChange={(e) => handleUploadImg(e)} />
         
       </div>
     </Modal>

@@ -85,7 +85,6 @@ const getProduct = async (req, res) => {
   const { title, category } = req.body;
   let page = req.query.page;
   let size = req.query.size;
-  console.log("quẻy", req.query);
   try {
     if (page) {
       page = parseInt(page);
