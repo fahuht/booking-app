@@ -14,6 +14,7 @@ const productReducer = (
     listCart: [],
     dataOrder: {},
     dataStatistic: {},
+    message: ""
   },
   action,
 ) => {
@@ -29,7 +30,7 @@ const productReducer = (
         error: false,
       }
     case 'CREATE_PRODUCT_FAIL':
-      return { ...state, loading: false, error: true }
+      return { ...state, loading: false, error: true, message: action?.message || "" }
 
     // Update Product
     case 'UPDATE_PRODUCT_START':
@@ -42,7 +43,7 @@ const productReducer = (
         error: false,
       }
     case 'UPDATE_PRODUCT_FAIL':
-      return { ...state, loading: false, error: true }
+      return { ...state, loading: false, error: true, message: action?.message || "" }
 
     // Delete Product
     case 'DELETE_PRODUCT_START':
@@ -193,6 +194,8 @@ const productReducer = (
         isUpdateProductSucces: false,
         isAddToCartSuccess: false,
         isApproveSuccess: false,
+        error: false,
+        message: ""
       }
 
     default:

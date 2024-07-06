@@ -6,6 +6,18 @@ const cloudinary = require("../cloudinary/cloudinary.js");
 const createCategory = async (req, res) => {
   try {
     const { name, image, code } = req.body;
+
+    // check tồn tại danh mục
+    const oldCategory = await categoryModel.find({
+      $or: [
+        { name: name },
+        { code: code },
+      ],
+    })
+    if(oldCategory){
+      return res.status(400).json("Danh mục đã tồn tại")
+    }
+
     if (image) {
       const result = await cloudinary.uploader.upload(image, {
         upload_preset: "upload_image_unsigned",
@@ -31,7 +43,19 @@ const createCategory = async (req, res) => {
 // Update Category
 const updateCategory = async (req, res) => {
   const { categoryId, name, code } = req.body;
+
   try {
+    // check tồn tại danh mục
+    const oldCategory = await categoryModel.find({
+      $or: [
+        { name: name },
+        { code: code },
+      ],
+    })
+    if(oldCategory){
+      return res.status(400).json("Danh mục đã tồn tại")
+    }
+    
     const category = await categoryModel.findByIdAndUpdate(
       categoryId,
       { name, code },

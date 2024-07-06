@@ -10,7 +10,7 @@ export const createProduct = (dataRequest) => async (dispatch) => {
     const { data } = await ProductApi.createProduct(dataRequest)
     dispatch({ type: 'CREATE_PRODUCT_SUCCESS', data: data })
   } catch (error) {
-    dispatch({ type: 'CREATE_PRODUCT_FAIL' })
+    dispatch({ type: 'CREATE_PRODUCT_FAIL', message: error?.response.data })
     console.log(error)
   }
 }
@@ -22,7 +22,7 @@ export const updateProduct = (dataRequest) => async (dispatch) => {
     const { data } = await ProductApi.updateProduct(dataRequest)
     dispatch({ type: 'UPDATE_PRODUCT_SUCCESS', data: data })
   } catch (error) {
-    dispatch({ type: 'UPDATE_PRODUCT_FAIL' })
+    dispatch({ type: 'UPDATE_PRODUCT_FAIL', message: error?.response.data })
     console.log(error)
   }
 }

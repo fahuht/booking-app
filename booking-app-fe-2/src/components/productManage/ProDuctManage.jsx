@@ -19,6 +19,8 @@ const ProDuctManage = (props) => {
     isUpdateProductSucces,
     isDeleteProductSucces,
     loading,
+    error,
+    message
   } = useSelector((state) => state.productReducer);
   const [api, contextHolder] = notification.useNotification();
   const openNotificationWithIcon = (type, message, description) => {
@@ -36,6 +38,18 @@ const ProDuctManage = (props) => {
   const [isOpenModalEdit, setIsOpenModalEdit] = useState(false);
   const [dataRequest, setDataRquest] = useState(baseRequest);
   const [itemProduct, setItemProduct] = useState({});
+
+  useEffect(()=>{
+    if(error){
+      openNotificationWithIcon('error', message || "")
+      dispatch(clearStateProduct())
+      dispatch(
+        getProduct({
+          ...dataRequest,
+        })
+      );
+    }
+  },[error])
 
   useEffect(() => {
     if (isCreateProductSucces) {

@@ -17,6 +17,13 @@ const createProduct = async (req, res) => {
     categoryName,
   } = req.body;
   try {
+    // check tồn tại danh mục
+    const oldProduct = await productModel.find({
+      title
+    })
+    if(oldProduct){
+      return res.status(400).json("Sản phẩm đã tồn tại")
+    }
     if (image) {
       const result = await cloudinary.uploader.upload(image, {
         upload_preset: "upload_image_unsigned",
@@ -55,6 +62,13 @@ const updateProduct = async (req, res) => {
     categoryName,
   } = req.body;
   try {
+    // check tồn tại danh mục
+    const oldProduct = await productModel.find({
+      title
+    })
+    if(oldProduct){
+      return res.status(400).json("Sản phẩm đã tồn tại")
+    }
     await productModel.findByIdAndUpdate(
       productId,
       { title, description, priceBySize, stock, category, categoryName },

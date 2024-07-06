@@ -18,6 +18,8 @@ const CategoryManage = (props) => {
     isUpdateCategorySucces,
     isDeleteCategorySucces,
     loading,
+    error,
+    message
   } = useSelector((state) => state.categoryReducer)
   const [api, contextHolder] = notification.useNotification()
   const openNotificationWithIcon = (type, message, description) => {
@@ -81,6 +83,18 @@ const CategoryManage = (props) => {
       }),
     )
   }, [])
+
+  useEffect(()=>{
+    if(error){
+      openNotificationWithIcon('error', message || "")
+      dispatch(clearStateCategory())
+      dispatch(
+        getCategory({
+          ...dataRequest,
+        }),
+      )
+    }
+  },[error])
 
   const openModal = () => {
     setIsOpenModal(true)
@@ -174,6 +188,7 @@ const CategoryManage = (props) => {
         <ModalAddCategory
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
+          openNotificationWithIcon={openNotificationWithIcon}
         />
       )}
       {isOpenModalEdit && (
@@ -181,6 +196,7 @@ const CategoryManage = (props) => {
           isOpenModalEdit={isOpenModalEdit}
           setIsOpenModalEdit={setIsOpenModalEdit}
           itemCategory={itemCategory}
+          openNotificationWithIcon={openNotificationWithIcon}
         />
       )}
       <Loading isLoading={loading} />

@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { Modal, Input, Select } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { Modal, Input } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
-import { createCategory } from '../../action/CategoryAction'
+import { clearStateCategory, createCategory } from '../../action/CategoryAction'
 
 const ModalAddCategory = (props) => {
-  const { isOpenModal, setIsOpenModal } = props
+  const { isOpenModal, setIsOpenModal, openNotificationWithIcon } = props
   const dispatch = useDispatch()
-  const loading = useSelector((state) => state.categoryReducer.loading)
+  const {message, error} = useSelector((state) => state.categoryReducer)
 
   const [dataRequest, setDataRquest] = useState({
     name: '',

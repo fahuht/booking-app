@@ -8,8 +8,8 @@ export const createCategory = (dataRequest) => async (dispatch) => {
       const { data } = await CategoryApi.createCategory(dataRequest)
       dispatch({ type: 'CREATE_CATEGORY_SUCCESS', data: data })
     } catch (error) {
-      dispatch({ type: 'CREATE_CATEGORY_FAIL' })
-      console.log(error)
+      dispatch({ type: 'CREATE_CATEGORY_FAIL', message: error?.response.data })
+      console.log(error?.response.data)
     }
   }
   
@@ -19,7 +19,7 @@ export const createCategory = (dataRequest) => async (dispatch) => {
       const { data } = await CategoryApi.updateCategory(dataRequest)
       dispatch({ type: 'UPDATE_CATEGORY_SUCCESS', data: data })
     } catch (error) {
-      dispatch({ type: 'UPDATE_CATEGORY_FAIL' })
+      dispatch({ type: 'UPDATE_CATEGORY_FAIL', message: error?.response.data})
       console.log(error)
     }
   }
@@ -30,7 +30,7 @@ export const createCategory = (dataRequest) => async (dispatch) => {
       const { data } = await CategoryApi.deleteCategory(dataRequest)
       dispatch({ type: 'DELETE_CATEGORY_SUCCESS', data: data })
     } catch (error) {
-      dispatch({ type: 'DELETE_CATEGORY_FAIL' })
+      dispatch({ type: 'DELETE_CATEGORY_FAIL'  })
       console.log(error)
     }
   }
