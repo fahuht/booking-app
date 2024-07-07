@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import "../product-card/ProductCard.css";
 import CardModal from "../CardModal/CardModal";
 import FoodIcon from "../../assets/image/food-icon.png";
@@ -23,6 +22,7 @@ const ProductCard = (props) => {
       setOpenCardModal(true);
     }
   };
+
   return (
     <div className="food_item ">
       <div className="food-item-img-container">

@@ -38,7 +38,7 @@ const Footer = () => {
                 <h5 className="footer_title">Liên hệ</h5>
                 <ListGroupItem className="footer_listgroup_item border-0 ps-0">
                   <p>
-                    Địa chỉ: Mỹ Đình <br /> Thành Phố Hà Nội
+                    Địa chỉ: <br /> Thành Phố Hà Nội
                   </p>
                 </ListGroupItem>
 
@@ -47,7 +47,7 @@ const Footer = () => {
                     Điện thoại: 0375493608
                     <br />
                   </span>
-                  <span>Email: ducviet260909@gmail.com</span>
+                  <span>Email: tranghad02@gmail.com</span>
                 </ListGroupItem>
               </ListGroup>
             </Col>

@@ -13,6 +13,7 @@ const OrderRoute = require("./Routes/OrderRoute.js");
 const CategoryRoute = require("./Routes/CategoryRoute.js");
 
 const app = express();
+//đọc docx để cấu hình
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());

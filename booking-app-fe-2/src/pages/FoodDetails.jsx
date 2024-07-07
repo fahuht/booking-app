@@ -1,48 +1,48 @@
-import React from 'react'
-import { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import React from "react";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
-import { useSelector } from 'react-redux'
+import { useSelector } from "react-redux";
 // import ProductCard from '../components/product-card/ProductCard'
 // import cartActions from '../store/shopping-cart/CartSlice'
 // import products from '../assets/data/products'
-import '../pages/page-style/FoodDetails.css'
-import { Button, Input } from 'antd'
-import CardModal from '../components/CardModal/CardModal'
+import "../pages/page-style/FoodDetails.css";
+import { Button, Input } from "antd";
+import CardModal from "../components/CardModal/CardModal";
 
 const FoodDetails = () => {
-  const user = useSelector((state) => state.authReducer.authData)
-  const { state } = useLocation()
-  const navigate = useNavigate()
-  const [openCardModal, setOpenCardModal] = useState(false)
+  const user = useSelector((state) => state.authReducer.authData);
+  const { state } = useLocation();
+  const navigate = useNavigate();
+  const [openCardModal, setOpenCardModal] = useState(false);
 
-  console.log(state)
+  console.log(state);
 
   const handleGetCategory = (category) => {
-    if (category === 'food') {
-      return <b>Đồ ăn</b>
+    if (category === "food") {
+      return <b>Đồ ăn</b>;
     }
-    if (category === 'drink') {
-      return <b>Đồ uống</b>
+    if (category === "drink") {
+      return <b>Đồ uống</b>;
     }
-    if (category === 'orther') {
-      return <b>Khác</b>
+    if (category === "orther") {
+      return <b>Khác</b>;
     }
-    if (category === 'vegetarian_food') {
-      return <b>Đồ chay</b>
+    if (category === "vegetarian_food") {
+      return <b>Đồ chay</b>;
     }
-    if (category === 'cake') {
-      return <b>Bánh</b>
+    if (category === "cake") {
+      return <b>Bánh</b>;
     }
-  }
+  };
 
   const handleAddCart = () => {
     if (!user) {
-      navigate('/dang-nhap')
+      navigate("/dang-nhap");
     } else {
-      setOpenCardModal(true)
+      setOpenCardModal(true);
     }
-  }
+  };
 
   return (
     <>
@@ -83,7 +83,7 @@ const FoodDetails = () => {
         />
       )}
     </>
-  )
-}
+  );
+};
 
-export default FoodDetails
+export default FoodDetails;

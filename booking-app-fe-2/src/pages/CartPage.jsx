@@ -110,6 +110,7 @@ const CartPage = () => {
       align: "center",
       // dataIndex: 'address',
       key: "actions",
+
       render: (record) => {
         return (
           <div>
@@ -122,6 +123,7 @@ const CartPage = () => {
                 Sửa
               </Button> */}
               <Button
+                className="delete-button"
                 onClick={() =>
                   dispatch(
                     deleteProductOnCart({
@@ -177,7 +179,7 @@ const CartPage = () => {
               <div className="mt-4 mb-5">
                 <h6>
                   Tổng cộng:&ensp;
-                  <span className="cartpage_subtotal">{totalAmount}đ</span>
+                  <span className="cartpage_subtotal">{totalAmount} VND</span>
                 </h6>
 
                 <div className="cartpage_btn mt-5">
