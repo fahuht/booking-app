@@ -9,13 +9,10 @@ const createCategory = async (req, res) => {
 
     // check tồn tại danh mục
     const oldCategory = await categoryModel.find({
-      $or: [
-        { name: name },
-        { code: code },
-      ],
-    })
-    if(oldCategory){
-      return res.status(400).json("Danh mục đã tồn tại")
+      $or: [{ name: name }, { code: code }],
+    });
+    if (oldCategory.length > 0) {
+      return res.status(400).json("Danh mục đã tồn tại");
     }
 
     if (image) {
@@ -47,15 +44,12 @@ const updateCategory = async (req, res) => {
   try {
     // check tồn tại danh mục
     const oldCategory = await categoryModel.find({
-      $or: [
-        { name: name },
-        { code: code },
-      ],
-    })
-    if(oldCategory){
-      return res.status(400).json("Danh mục đã tồn tại")
+      $or: [{ name: name }, { code: code }],
+    });
+    if (oldCategory.length > 0) {
+      return res.status(400).json("Danh mục đã tồn tại");
     }
-    
+
     const category = await categoryModel.findByIdAndUpdate(
       categoryId,
       { name, code },
@@ -66,6 +60,21 @@ const updateCategory = async (req, res) => {
     res.status(500).json(error);
   }
 };
+
+// Update Category
+// const updateCategory = async (req, res) => {
+//   const { categoryId, name, code } = req.body;
+//   try {
+//     const category = await categoryModel.findByIdAndUpdate(
+//       categoryId,
+//       { name, code },
+//       { new: true }
+//     );
+//     res.status(200).json({ status: 1 });
+//   } catch (error) {
+//     res.status(500).json(error);
+//   }
+// };
 
 // Delete Category
 const deleteCategory = async (req, res) => {

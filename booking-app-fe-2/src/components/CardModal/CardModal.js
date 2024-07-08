@@ -109,6 +109,11 @@ const CardModal = (props) => {
               Số lượng trong kho: <b>{item.stock}</b>{" "}
             </span>
           </div>
+          <div className="d-flex justify-content-around mt-3">
+            <span className="fw-600">
+              <b>Mô tả:</b> {item.description}
+            </span>
+          </div>
           <div className="d-flex justify-content-center">
             {item.stock === 0 && (
               <span className="text-danger fw-bold">Hết hàng</span>

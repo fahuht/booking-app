@@ -19,10 +19,10 @@ const createProduct = async (req, res) => {
   try {
     // check tồn tại danh mục
     const oldProduct = await productModel.find({
-      title
-    })
-    if(oldProduct){
-      return res.status(400).json("Sản phẩm đã tồn tại")
+      title,
+    });
+    if (oldProduct.length > 0) {
+      return res.status(400).json("Sản phẩm đã tồn tại");
     }
     if (image) {
       const result = await cloudinary.uploader.upload(image, {
@@ -64,10 +64,10 @@ const updateProduct = async (req, res) => {
   try {
     // check tồn tại danh mục
     const oldProduct = await productModel.find({
-      title
-    })
-    if(oldProduct){
-      return res.status(400).json("Sản phẩm đã tồn tại")
+      title,
+    });
+    if (oldProduct.length > 0) {
+      return res.status(400).json("Sản phẩm đã tồn tại");
     }
     await productModel.findByIdAndUpdate(
       productId,

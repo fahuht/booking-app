@@ -1,165 +1,167 @@
-import { Button, Pagination, Table, notification } from 'antd'
-import React, { useEffect, useState } from 'react'
-import ModalAddCategory from './ModalAddCategory'
-import { useDispatch, useSelector } from 'react-redux'
+import { Button, Pagination, Table, notification } from "antd";
+import React, { useEffect, useState } from "react";
+import ModalAddCategory from "./ModalAddCategory";
+import { useDispatch, useSelector } from "react-redux";
 import {
   clearStateCategory,
   deleteCategory,
   getCategory,
-} from '../../action/CategoryAction'
-import Loading from '../Loading/Loading'
-import ModalEditCategory from './ModalEditCategory'
+} from "../../action/CategoryAction";
+import Loading from "../Loading/Loading";
+import ModalEditCategory from "./ModalEditCategory";
 
 const CategoryManage = (props) => {
-  const dispatch = useDispatch()
-  const listCategory = useSelector((state) => state.categoryReducer.listCategory)
+  const dispatch = useDispatch();
+  const listCategory = useSelector(
+    (state) => state.categoryReducer.listCategory
+  );
   const {
     isCreateCategorySucces,
     isUpdateCategorySucces,
     isDeleteCategorySucces,
     loading,
     error,
-    message
-  } = useSelector((state) => state.categoryReducer)
-  const [api, contextHolder] = notification.useNotification()
+    message,
+  } = useSelector((state) => state.categoryReducer);
+  const [api, contextHolder] = notification.useNotification();
   const openNotificationWithIcon = (type, message, description) => {
     api[type]({
       message,
       description,
-    })
-  }
+    });
+  };
 
   const baseRequest = {
     page: 1,
     size: 5,
-  }
-  const [isOpenModal, setIsOpenModal] = useState(false)
-  const [isOpenModalEdit, setIsOpenModalEdit] = useState(false)
-  const [dataRequest, setDataRquest] = useState(baseRequest)
-  const [itemCategory, setItemCategory] = useState({})
+  };
+  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModalEdit, setIsOpenModalEdit] = useState(false);
+  const [dataRequest, setDataRquest] = useState(baseRequest);
+  const [itemCategory, setItemCategory] = useState({});
 
   useEffect(() => {
     if (isCreateCategorySucces) {
-      openNotificationWithIcon('success', 'Thêm mới thành công', '')
-      setIsOpenModal(false)
-      dispatch(clearStateCategory())
+      openNotificationWithIcon("success", "Thêm mới thành công", "");
+      setIsOpenModal(false);
+      dispatch(clearStateCategory());
       dispatch(
         getCategory({
           ...baseRequest,
-        }),
-      )
+        })
+      );
     }
-  }, [isCreateCategorySucces])
+  }, [isCreateCategorySucces]);
 
   useEffect(() => {
     if (isUpdateCategorySucces) {
-      openNotificationWithIcon('success', 'Cập nhật thành công', '')
-      dispatch(clearStateCategory())
+      openNotificationWithIcon("success", "Cập nhật thành công", "");
+      dispatch(clearStateCategory());
       dispatch(
         getCategory({
           ...baseRequest,
-        }),
-      )
+        })
+      );
     }
-  }, [isUpdateCategorySucces])
+  }, [isUpdateCategorySucces]);
 
   useEffect(() => {
     if (isDeleteCategorySucces) {
-      openNotificationWithIcon('success', 'Xoá thành công', '')
-      dispatch(clearStateCategory())
+      openNotificationWithIcon("success", "Xoá thành công", "");
+      dispatch(clearStateCategory());
       dispatch(
         getCategory({
           ...baseRequest,
-        }),
-      )
+        })
+      );
     }
-  }, [isDeleteCategorySucces])
+  }, [isDeleteCategorySucces]);
 
   useEffect(() => {
-    dispatch(clearStateCategory())
+    dispatch(clearStateCategory());
     dispatch(
       getCategory({
         ...dataRequest,
-      }),
-    )
-  }, [])
+      })
+    );
+  }, []);
 
-  useEffect(()=>{
-    if(error){
-      openNotificationWithIcon('error', message || "")
-      dispatch(clearStateCategory())
+  useEffect(() => {
+    if (error) {
+      openNotificationWithIcon("error", message || "");
+      dispatch(clearStateCategory());
       dispatch(
         getCategory({
           ...dataRequest,
-        }),
-      )
+        })
+      );
     }
-  },[error])
+  }, [error]);
 
   const openModal = () => {
-    setIsOpenModal(true)
-  }
+    setIsOpenModal(true);
+  };
 
   const handleOpenModalEdit = (item) => {
-    setItemCategory(item)
-    setIsOpenModalEdit(true)
-  }
+    setItemCategory(item);
+    setIsOpenModalEdit(true);
+  };
 
   const columns = [
     {
-      title: 'Tên danh mục',
-      align: '',
-      dataIndex: 'name',
-      key: 'name',
+      title: "Tên danh mục",
+      align: "",
+      dataIndex: "name",
+      key: "name",
     },
     {
-      align: 'center',
-      title: 'Mã danh mục',
-      dataIndex: 'code',
-      key: 'code',
+      align: "center",
+      title: "Mã danh mục",
+      dataIndex: "code",
+      key: "code",
     },
     {
-      title: 'Thao tác',
-      align: 'center',
+      title: "Thao tác",
+      align: "center",
       // dataIndex: 'address',
-      key: 'actions',
+      key: "actions",
       render: (record) => {
         return (
           <div>
             <div className="d-flex justify-content-center gap-1">
               <Button
                 onClick={() => {
-                  handleOpenModalEdit(record)
+                  handleOpenModalEdit(record);
                 }}
               >
                 Sửa
               </Button>
               <Button
                 onClick={() =>
-                  dispatch(deleteCategory({ productId: record._id }))
+                  dispatch(deleteCategory({ categoryId: record._id }))
                 }
               >
                 Xóa
               </Button>
             </div>
           </div>
-        )
+        );
       },
     },
-  ]
+  ];
 
   const handlePageChange = (page) => {
     const newDataRequest = {
       ...dataRequest,
       page,
-    }
-    setDataRquest(newDataRequest)
+    };
+    setDataRquest(newDataRequest);
     dispatch(
       getCategory({
         ...newDataRequest,
-      }),
-    )
-  }
+      })
+    );
+  };
 
   return (
     <div className="">
@@ -201,7 +203,7 @@ const CategoryManage = (props) => {
       )}
       <Loading isLoading={loading} />
     </div>
-  )
-}
+  );
+};
 
-export default CategoryManage
+export default CategoryManage;

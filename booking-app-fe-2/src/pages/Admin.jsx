@@ -10,6 +10,7 @@ import DecentralizedManage from "../components/DecentralizedManage/Decentralized
 import RevenueStatistics from "../components/RevenueStatistics/RevenueStatistics";
 import { getCategory } from "../action/CategoryAction";
 import { getListUser } from "../action/UserAction";
+import "./page-style/Admin.css";
 
 const Admin = () => {
   const dispatch = useDispatch();
@@ -87,16 +88,16 @@ const Admin = () => {
           getCategory({
             page: 1,
             size: 5,
-          }),
-        )
+          })
+        );
         break;
       case "PHAN_QUYEN":
         dispatch(
           getListUser({
             page: 1,
             size: 5,
-          }),
-        )
+          })
+        );
         break;
       default:
         break;
