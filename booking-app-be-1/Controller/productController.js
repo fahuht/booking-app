@@ -17,7 +17,7 @@ const createProduct = async (req, res) => {
     categoryName,
   } = req.body;
   try {
-    // check tồn tại danh mục
+    // check tồn tại sản phẩm
     const oldProduct = await productModel.find({
       title,
     });
