@@ -22,8 +22,10 @@ const ModalAddProduct = (props) => {
       sizeL: 0,
     },
     stock: 0,
-    category: "food",
+    category: "",
   });
+  const [imageProduct, setImageProduct] = useState(null);
+
 
   const handleCancel = () => {
     setIsOpenModal(false);
@@ -35,6 +37,7 @@ const ModalAddProduct = (props) => {
     reader.readAsDataURL(e.target.files[0]);
     reader.onloadend = () => {
       setDataRquest({ ...dataRequest, image: reader.result });
+      setImageProduct(reader.result);
     };
   };
 
@@ -90,6 +93,11 @@ const ModalAddProduct = (props) => {
           type="text"
           onChange={(e) => handleChange(e)}
         />
+        {imageProduct && (
+          <div className="img-category">
+            <img src={imageProduct} />
+          </div>
+        )}
         <Input type="file" onChange={(e) => handleUploadImg(e)} />
         <Input.TextArea
           name="description"

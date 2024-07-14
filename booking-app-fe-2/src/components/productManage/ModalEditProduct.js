@@ -27,6 +27,8 @@ const ModalEditProduct = (props) => {
     category: itemProduct.category || '',
     categoryName: itemProduct.categoryName || '',
   })
+  const [imageProduct, setImageProduct] = useState(itemProduct?.image?.url);
+
 
   useEffect(() => {
     if (isUpdateProductSucces) {
@@ -74,6 +76,15 @@ const ModalEditProduct = (props) => {
     dispatch(updateProduct(dataRequest))
   }
 
+  const handleUploadImg = (e) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onloadend = () => {
+      setDataRquest({ ...dataRequest, image: reader.result });
+      setImageProduct(reader.result);
+    };
+  };
+
   return (
     <Modal
       open={isOpenModalEdit}
@@ -91,7 +102,12 @@ const ModalEditProduct = (props) => {
           type="text"
           onChange={(e) => handleChange(e)}
         />
-        {/* <Input type="file" onChange={(e) => handleUploadImg(e)} /> */}
+        {imageProduct && (
+          <div className="img-category">
+            <img src={imageProduct} />
+          </div>
+        )}
+        <Input type="file" onChange={(e) => handleUploadImg(e)} />
         <Input.TextArea
           value={dataRequest.description}
           name="description"
