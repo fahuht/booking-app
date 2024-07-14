@@ -1,41 +1,46 @@
-import React, { useEffect, useState } from 'react'
-import { Modal, Input } from 'antd'
-import { useDispatch, useSelector } from 'react-redux'
-import { clearStateCategory, createCategory } from '../../action/CategoryAction'
+import React, { useEffect, useState } from "react";
+import { Modal, Input } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  clearStateCategory,
+  createCategory,
+} from "../../action/CategoryAction";
 
 const ModalAddCategory = (props) => {
-  const { isOpenModal, setIsOpenModal, openNotificationWithIcon } = props
-  const dispatch = useDispatch()
-  const {message, error} = useSelector((state) => state.categoryReducer)
+  const { isOpenModal, setIsOpenModal, openNotificationWithIcon } = props;
+  const dispatch = useDispatch();
+  const { message, error } = useSelector((state) => state.categoryReducer);
 
   const [dataRequest, setDataRquest] = useState({
-    name: '',
+    name: "",
     code: "",
-  })
+  });
+  const [imageCategory, setImageCategory] = useState(null);
 
   const handleCancel = () => {
-    setIsOpenModal(false)
-  }
+    setIsOpenModal(false);
+  };
 
   // hàm bắt giá trị khi nhập input text
   const handleChange = (e) => {
     const newDataRequest = {
       ...dataRequest,
       [e.target.name]: e.target.value,
-    }
-    setDataRquest(newDataRequest)
-  }
+    };
+    setDataRquest(newDataRequest);
+  };
 
   // hàm call api tạo sản phẩm
   const handleCreateCategory = () => {
-    dispatch(createCategory(dataRequest))
-  }
+    dispatch(createCategory(dataRequest));
+  };
 
   const handleUploadImg = (e) => {
     const reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onloadend = () => {
       setDataRquest({ ...dataRequest, image: reader.result });
+      setImageCategory(reader.result);
     };
   };
 
@@ -61,11 +66,15 @@ const ModalAddCategory = (props) => {
           type="text"
           onChange={(e) => handleChange(e)}
         />
+        {imageCategory && (
+          <div className="img-category">
+            <img src={imageCategory} />
+          </div>
+        )}
         <Input type="file" onChange={(e) => handleUploadImg(e)} />
-        
       </div>
     </Modal>
-  )
-}
+  );
+};
 
-export default ModalAddCategory
+export default ModalAddCategory;

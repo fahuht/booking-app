@@ -41,3 +41,12 @@
     background: silver;
     pointer-events: none;
   }
+
+  .img-category{
+    width: 100%;
+    height: 300px;
+  }
+  .img-category > img{
+    width: 100%;
+    height: 100%;
+  }

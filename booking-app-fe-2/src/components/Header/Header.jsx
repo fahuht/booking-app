@@ -1,4 +1,4 @@
-import { React, useRef, useEffect } from "react";
+import { React, useRef, useEffect, useState } from "react";
 
 import logo from "../../assets/image/res-logo.png";
 import { Container } from "reactstrap";
@@ -6,8 +6,9 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import "../Header/Header.css";
-import { Button } from "antd";
+import { Button, Dropdown, Popover } from "antd";
 import { logOut } from "../../action/AuthAction";
+import ChangePassModal from "../ChangePassModal/ChangePassModal";
 
 const Header = () => {
   const menuRef = useRef(null);
@@ -18,6 +19,8 @@ const Header = () => {
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [openModalChangePass, setOpenModalChangePass] = useState(false);
 
   const nav_link = [
     {
@@ -68,6 +71,26 @@ const Header = () => {
     dispatch(logOut());
   };
 
+  const handleMenuClick = (e) => {
+    console.log("click", e);
+    if (e.key === "1") {
+      setOpenModalChangePass(true);
+    }
+  };
+
+  const items = [
+    {
+      label: "Đổi mật khẩu",
+      key: "1",
+      // icon: <KeyOutlined />,
+    },
+  ];
+
+  const menuProps = {
+    items,
+    onClick: handleMenuClick,
+  };
+
   return (
     <header className="header-header w-100" ref={headerRef}>
       <Container className="header-container">
@@ -112,9 +135,12 @@ const Header = () => {
           <div className="header-right-icon d-flex align-items-center gap-4">
             {user ? (
               <div className="d-flex gap-4 align-items-center">
-                <strong>
-                  {user?.user?.firstname} {user?.user?.lastname}
-                </strong>
+                <Dropdown.Button menu={menuProps}>
+                  <strong>
+                    {user?.user?.firstname} {user?.user?.lastname}
+                  </strong>
+                </Dropdown.Button>
+
                 <Button
                   className="addtoCart_btn"
                   onClick={() => handleLogout()}
@@ -132,6 +158,12 @@ const Header = () => {
             )}
           </div>
         </div>
+        {openModalChangePass && (
+          <ChangePassModal
+            openModal={openModalChangePass}
+            setOpenModal={setOpenModalChangePass}
+          />
+        )}
       </Container>
     </header>
   );

@@ -14,6 +14,7 @@ const ModalEditCategory = (props) => {
     name: itemCategory.name || '',
     code: itemCategory.code || '',
   })
+  const [imageCategory, setImageCategory] = useState(itemCategory?.image?.url);
 
   useEffect(() => {
     if (isUpdateCategorySucces) {
@@ -40,6 +41,15 @@ const ModalEditCategory = (props) => {
     dispatch(updateCategory(dataRequest))
   }
 
+  const handleUploadImg = (e) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onloadend = () => {
+      setDataRquest({ ...dataRequest, image: reader.result });
+      setImageCategory(reader.result);
+    };
+  };
+
   return (
     <Modal
       open={isOpenModalEdit}
@@ -64,6 +74,12 @@ const ModalEditCategory = (props) => {
           type="text"
           onChange={(e) => handleChange(e)}
         />
+        {imageCategory && (
+          <div className="img-category">
+            <img src={imageCategory} />
+          </div>
+        )}
+        <Input type="file" onChange={(e) => handleUploadImg(e)} />
       </div>
     </Modal>
   )
