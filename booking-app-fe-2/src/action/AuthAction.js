@@ -25,6 +25,17 @@ export const signUp = (formData) => async (dispatch) => {
   }
 }
 
+export const changePass = (formData) => async (dispatch) => {
+  dispatch({ type: 'CHANGE_PASS_START' })
+  try {
+    const { data } = await AuthApi.changePass(formData)
+    dispatch({ type: 'CHANGE_PASS_SUCCESS', data: data })
+  } catch (error) {
+    const data = error.response.data
+    dispatch({ type: 'CHANGE_PASS_FAIL', data: data })
+  }
+}
+
 export const clearAuthState = () => async (dispatch) => {
   dispatch({ type: 'CLEAR_AUTH_STATE' })
 }
