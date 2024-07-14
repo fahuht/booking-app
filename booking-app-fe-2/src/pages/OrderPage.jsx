@@ -70,7 +70,7 @@ const OrderPage = () => {
               record.listCart.map((item) => (
                 <span>
                   {" "}
-                  {item.title} - {convertSize(item.size)}  x  {item.quantity}
+                  {item.title} - {convertSize(item.size)} x {item.quantity}
                 </span>
               ))}
           </div>
@@ -85,10 +85,19 @@ const OrderPage = () => {
       render: (record) => {
         return (
           <div className="d-flex flex-column">
-            <span>Tên: {record.info.name}</span>
-            <span>Email: {record.info.email}</span>
-            <span>SĐT: {record.info.phone}</span>
-            <span>Địa chỉ: {record.info.address}</span>
+            <span>
+              <b>Tên:</b> {record.info.name}
+            </span>
+            <span>
+              <b>Email:</b> {record.info.email}
+            </span>
+            <span>
+              <b>SĐT: </b>
+              {record.info.phone}
+            </span>
+            <span>
+              <b>Địa chỉ:</b> {record.info.address}
+            </span>
           </div>
         );
       },
